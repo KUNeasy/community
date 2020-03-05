@@ -23,7 +23,7 @@ public class IndexController {
         //通过request可以获取到cookie数组，遍历找出名字是token的cookie，通过携带的token去数据库里找到用户
         Cookie[] cookies = request.getCookies();
         for (Cookie cookie : cookies) {
-            if (cookie.getName().equals("token")){
+            if ("token".equals(cookie.getName())){
                 String token = cookie.getValue();
                 User user = userMapper.findByToken(token);
                 if(user != null){
