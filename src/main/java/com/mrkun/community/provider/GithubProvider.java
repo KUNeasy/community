@@ -6,8 +6,6 @@ import com.mrkun.community.dto.GithubUser;
 import okhttp3.*;
 import org.springframework.stereotype.Component;
 
-import java.io.IOException;
-
 /**
  * @author by liukun
  * @date 2020/3/4
@@ -45,7 +43,6 @@ public class GithubProvider {
             String string = response.body().string();
             GithubUser githubUser = JSON.parseObject(string, GithubUser.class);
             return githubUser;
-
         } catch (Exception e) {
             e.printStackTrace();
         }
