@@ -5,6 +5,7 @@
     <title>Mr社区</title>
     <link rel="stylesheet" href="css/bootstrap.min.css">
     <link rel="stylesheet" href="css/bootstrap-theme.min.css">
+    <script type="text/javascript" src="js/jquery-3.4.1.min.js"></script>
     <script type="text/javascript" src="js/bootstrap.min.js"></script>
 
 </head>
@@ -32,11 +33,11 @@
             </form>
             <ul class="nav navbar-nav navbar-right">
                 <li class="dropdown" th:if="${session.user} ne null">
-                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false" th:text="${session.user.getId()}"><span class="caret"></span></a>
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false" th:text="${session.user.getId()}"> <span class="caret"></span></a>
                     <ul class="dropdown-menu">
                         <li><a href="#">个人中心</a></li>
+                        <li><a href="#">消息中心</a></li>
                         <li><a href="#">退出登录</a></li>
-                        <li><a href="#">帮助文档</a></li>
                     </ul>
                 </li>
                 <li th:if="${session.user} eq null"><a href="https://github.com/login/oauth/authorize?client_id=672a4dd92a6ec049abe5&redirect_uri=http://localhost:8080/callback&scop=user&state=1">登录</a></li>

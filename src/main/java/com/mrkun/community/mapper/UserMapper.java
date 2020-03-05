@@ -3,6 +3,8 @@ package com.mrkun.community.mapper;
 import com.mrkun.community.model.User;
 import org.apache.ibatis.annotations.Insert;
 import org.apache.ibatis.annotations.Mapper;
+import org.apache.ibatis.annotations.Param;
+import org.apache.ibatis.annotations.Select;
 
 /**
  * @author by liukun
@@ -12,4 +14,8 @@ import org.apache.ibatis.annotations.Mapper;
 public interface UserMapper {
     @Insert("insert into User (account_id,name,token,gmt_create,gmt_modified) values (#{accountId},#{name},#{token},#{gmtCreate},#{gmtModified})")
     void insertUser(User user);
+
+    //属性需要指定@Param参数来定位，对象不需要
+    @Select("select * from user where token = #{token}")
+    User findByToken(@Param("token") String token);
 }
