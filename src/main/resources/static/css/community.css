@@ -1,0 +1,12 @@
+body{
+    background: url("../img/background.png");
+}
+.main{
+    margin: 1% 8%;
+    background: white;
+}
+.submit-btn{
+    float: right;
+    margin-bottom: 1%;
+    margin-right: 1%;
+}
