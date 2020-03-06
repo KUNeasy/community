@@ -2,8 +2,8 @@ body{
     background: url("../img/background.png");
 }
 .main{
-    margin: 1% 8%;
     background: white;
+    margin-bottom: 20px;
 }
 .submit-btn{
     float: right;
