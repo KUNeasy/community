@@ -10,3 +10,15 @@ body{
     margin-bottom: 1%;
     margin-right: 1%;
 }
+.middle{
+    height: auto;
+}
+.mynavbar{
+    margin-top: 4px;
+}
+.alignCenter{
+    vertical-align: middle;
+}
+.titleText{
+    font-size: large;
+}

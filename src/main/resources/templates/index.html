@@ -15,7 +15,7 @@
 <div class="navbar navbar-inverse navbar-fixed-top">
     <div class="container">
         <!-- Brand and toggle get grouped for better mobile display -->
-        <div class="navbar-header">
+        <div class="navbar-header mynavbar">
             <button type="button" class="navbar-toggle collapsed" data-toggle="collapse"
                     data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
                 <span class="sr-only">Toggle navigation</span>
@@ -34,7 +34,7 @@
                 </div>
                 <button type="submit" class="btn btn-default">搜索</button>
             </form>
-            <ul class="nav navbar-nav navbar-right">
+            <ul class="nav navbar-nav navbar-right mynavbar">
                 <li><a th:href="@{/publish}">发布</a></li>
                 <li class="dropdown" th:if="${session.user} ne null">
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true"
@@ -51,6 +51,42 @@
             </ul>
         </div><!-- /.navbar-collapse -->
     </div><!-- /.container-fluid -->
+</div>
+
+<div class="middle">
+    <div class="projects-header page-header">
+    </div>
+
+    <div class="container projects main">
+
+        <div class="row">
+            <div class="col-lg-9 col-md-12 col-sm-12 col-xs-12">
+                <div>
+                    <h2><span class="glyphicon glyphicon-list" aria-hidden="true"></span>发现</h2>
+                </div>
+                <hr>
+                <div class="media" th:each="question : ${questions}">
+                    <div class="media-left">
+                        <a href="#">
+                            <img class="media-object img-rounded" th:src="${question.user.avatarUrl}" src="../static/img/background.png" height="38" width="38" alt="...">
+                        </a>
+                    </div>
+                    <div class="media-body">
+                        <h4 class="media-heading" th:text="${question.title}">如何学习SpringBoot</h4>
+                        [[ ${question.description}]]
+                        • [[${question.commentCount}]] 个评论 • [[${question.viewCount}]] 次浏览 •  [[${#dates.format(question.gmtCreate,'dd MMMM yyyy')}]]
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-3 col-md-12 col-sm-12 col-xs-12">
+                <h2>问题发起指南</h2>
+                <hr>
+                + 问题标题：请用精简的语言描述您发布的问题，不超过25字 <br>
+                + 问题补充：详细补充您的问题内容，并确保问题描述清晰直观，并提供一些相关资料 <br>
+                + 选择标签：选择一个或者多个合适的标签，用逗号隔开，每个标签不超过10个字 <br>
+            </div>
+        </div>
+    </div>
 </div>
 </body>
 </html>

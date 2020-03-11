@@ -9,7 +9,7 @@
 
 ## 工具
 [Git工具](https://git-scm.com/downloads)  
-[visual Paradigm](https://www.visual-paradigm.com/cn)
+[visual Paradigm](https://www.visual-paradigm.com/cn)  
 [flyway](https://flywaydb.org/documentation/migrations)
 
 ## 脚本

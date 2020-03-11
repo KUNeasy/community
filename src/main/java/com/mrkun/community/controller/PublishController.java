@@ -43,15 +43,15 @@ public class PublishController {
         model.addAttribute("title",title);
         model.addAttribute("description",description);
         model.addAttribute("tag",tag);
-        if (title == null || title.equals("") ){
+        if (title == null || "".equals(title) ){
             model.addAttribute("error","标题不能为空");
             return "publish";
         }
-        if (description == null || description.equals("")){
+        if (description == null || "".equals(description)){
             model.addAttribute("error","问题不能为空");
             return "publish";
         }
-        if (tag == null || tag.equals("")){
+        if (tag == null || "".equals(tag)){
             model.addAttribute("error","标签不能为空");
             return "publish";
         }
@@ -77,6 +77,7 @@ public class PublishController {
         question.setTitle(title);
         question.setDescription(description);
         question.setTag(tag);
+        question.setCreator(user.getId());
         question.setGmtCreate(System.currentTimeMillis());
         question.setGmtModified(question.getGmtCreate());
         questionMapper.insertQuestion(question);

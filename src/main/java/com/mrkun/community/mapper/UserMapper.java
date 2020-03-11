@@ -18,4 +18,7 @@ public interface UserMapper {
     //属性需要指定@Param参数来定位，对象不需要
     @Select("select * from user where token = #{token}")
     User findByToken(@Param("token") String token);
+
+    @Select("select * from user where id = #{id}")
+    User findById(@Param("id") Integer id);
 }
