@@ -1,16 +1,20 @@
 package com.mrkun.community.controller;
 
+import com.mrkun.community.dto.PaginationDTO;
 import com.mrkun.community.dto.QuestionDTO;
 import com.mrkun.community.mapper.UserMapper;
 import com.mrkun.community.model.User;
 import com.mrkun.community.service.QuestionService;
+import org.apache.ibatis.annotations.Param;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -26,7 +30,9 @@ public class IndexController {
     private QuestionService questionService;
 
     @GetMapping("/")
-    public String index(HttpServletRequest request, Model model){
+    public String index(HttpServletRequest request, Model model,
+                        @RequestParam(value="page",defaultValue = "1")Integer page,
+                        @RequestParam(value="size",defaultValue = "3")Integer size){
         //通过request可以获取到cookie数组，遍历找出名字是token的cookie，通过携带的token去数据库里找到用户
         Cookie[] cookies = request.getCookies();
         if (cookies != null) {
@@ -42,8 +48,8 @@ public class IndexController {
                 }
             }
         }
-        List<QuestionDTO> questionList = questionService.list();
-        model.addAttribute("questions",questionList);
+        PaginationDTO paginationDTO = questionService.list(page,size);
+        model.addAttribute("pages",paginationDTO);
         return "index";
     }
 

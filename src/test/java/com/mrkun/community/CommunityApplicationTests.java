@@ -24,4 +24,9 @@ class CommunityApplicationTests {
         question.setTag("测试");
         questionMapper.insertQuestion(question);
     }
+
+    @Test
+    void testInteger(){
+        System.out.println(3/2);
+    }
 }

@@ -1,5 +1,6 @@
 package com.mrkun.community.service;
 
+import com.mrkun.community.dto.PaginationDTO;
 import com.mrkun.community.dto.QuestionDTO;
 import com.mrkun.community.mapper.QuestionMapper;
 import com.mrkun.community.mapper.UserMapper;
@@ -25,8 +26,10 @@ public class QuestionService {
     @Autowired
     private QuestionMapper questionMapper;
 
-    public List<QuestionDTO> list(){
-        List<Question> list = questionMapper.list();
+    public PaginationDTO list(Integer page, Integer size){
+        //size*(page-1)
+        Integer offset = size*(page-1);
+        List<Question> list = questionMapper.list(offset,size);
         List<QuestionDTO> qList = new ArrayList<>();
         for (Question question:list) {
             User user = userMapper.findById(question.getCreator());
@@ -35,6 +38,13 @@ public class QuestionService {
             questionDTO.setUser(user);
             qList.add(questionDTO);
         }
-        return qList;
+        PaginationDTO paginationDTO = new PaginationDTO();
+        //总问题数
+        Integer totalCount = questionMapper.count();
+        //把问题加入分页
+        paginationDTO.setQuestionDTOS(qList);
+        //设置分页
+        paginationDTO.setPagination(totalCount,page,size);
+        return paginationDTO;
     }
 }

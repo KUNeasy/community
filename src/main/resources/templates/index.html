@@ -60,12 +60,13 @@
     <div class="container projects main">
 
         <div class="row">
+            <!--页面主体左边-->
             <div class="col-lg-9 col-md-12 col-sm-12 col-xs-12">
                 <div>
                     <h2><span class="glyphicon glyphicon-list" aria-hidden="true"></span>发现</h2>
                 </div>
                 <hr>
-                <div class="media" th:each="question : ${questions}">
+                <div class="media" th:each="question : ${pages.getQuestionDTOS()}">
                     <div class="media-left">
                         <a href="#">
                             <img class="media-object img-rounded" th:src="${question.user.avatarUrl}" src="../static/img/background.png" height="38" width="38" alt="...">
@@ -77,7 +78,34 @@
                         • [[${question.commentCount}]] 个评论 • [[${question.viewCount}]] 次浏览 •  [[${#dates.format(question.gmtCreate,'dd MMMM yyyy')}]]
                     </div>
                 </div>
+                <nav aria-label="Page navigation">
+                    <ul class="pagination" >
+                        <li th:if="${pages.getShowFirstPage()}">
+                            <a th:href="@{/(page=1)}" aria-label="Previous">
+                                <span aria-hidden="true">&lt;&lt;</span>
+                            </a>
+                        </li>
+                        <li th:if="${pages.getShowPrevious()}">
+                            <a th:href="@{/(page=${pages.getPage()-1})}" aria-label="Previous">
+                                <span aria-hidden="true">&lt;</span>
+                            </a>
+                        </li>
+                        <li th:each="page : ${pages.getPages()}" th:class="(${page} eq ${pages.getPage()})? 'active': ''"><a th:href="@{/(page=${page})}" th:text="${page}">1</a></li>
+                        <li th:if="${pages.getShowNext()}">
+                            <a th:href="@{/(page=${pages.getPage()+1})}" aria-label="Next">
+                                <span aria-hidden="true">&gt;</span>
+                            </a>
+                        </li>
+                        <li th:if="${pages.getShowEndPage()}">
+                            <a th:href="@{/(page=${pages.getTotalPage()})}" aria-label="Next">
+                                <span aria-hidden="true">&gt;&gt;</span>
+                            </a>
+                        </li>
+                    </ul>
+                </nav>
             </div>
+
+            <!--页面主体右侧-->
             <div class="col-lg-3 col-md-12 col-sm-12 col-xs-12">
                 <h2>问题发起指南</h2>
                 <hr>
